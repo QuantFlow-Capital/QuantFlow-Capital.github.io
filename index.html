@@ -61,17 +61,35 @@ header{
   border-bottom:1px solid var(--border);
 }
 
-.logo-mark{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:72px;height:72px;border-radius:6px;
-  border:1px solid var(--cyan);
-  font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:1.4rem;
-  color:var(--cyan);margin-bottom:2rem;
-  position:relative;
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 6px;
+  border: 1px solid var(--cyan);
+  background: var(--panel);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: visible;
 }
-.logo-mark::before{
-  content:"";position:absolute;inset:-4px;border-radius:8px;
-  border:1px solid rgba(0,212,200,0.2);
+
+.logo-mark::before {
+  content: "";
+  position: absolute;
+  inset: -5px; 
+  border-radius: 8px;
+  border: 1px solid rgba(0, 212, 200, 0.2);
+  pointer-events: none;
+}
+
+
+.logo-mark img {
+  width: 75%; 
+  height: 75%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(0, 212, 200, 0.2)); 
 }
 
 h1{
@@ -287,9 +305,9 @@ footer{
 
 <!-- Header -->
 <header>
-  <div class="logo-container">
-    <img src="./logo.png" alt="QuantFlow Logo" style="width: 80%; height: auto;">
-  </div>
+  <div class="logo-mark">
+  <img src="./logo.png" alt="QuantFlow">
+</div>
   <div class="sub">Systematic Proprietary Intelligence</div>
   <h1>Quant<em>Flow</em> Fund</h1>
   <p style="color:var(--muted);font-size:0.9rem;margin-top:1rem;max-width:500px;margin-left:auto;margin-right:auto">
