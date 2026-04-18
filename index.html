@@ -1,113 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuantFlow Fund | Student-Led Proprietary Quantitative Fund</title>
-    <style>
-        :root {
-            --deep-flow: #0D47A1;
-            --stream-cyan: #00838F;
-            --sky-blue: #E3F2FD;
-            --primary-text: #1565C0;
-            --ice-blue: #BBDEFB;
-            --white: #ffffff;
-        }
-        
-        * { box-sizing: border-box; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--sky-blue); color: var(--primary-text); margin: 0; line-height: 1.7; }
-        
-        header { background: var(--white); padding: 4rem 2rem; text-align: center; border-bottom: 4px solid var(--stream-cyan); }
-        h1 { color: var(--deep-flow); margin: 0; font-size: 3rem; letter-spacing: -1px; font-weight: 800; }
-        .tagline { color: var(--stream-cyan); font-weight: 600; font-size: 1.2rem; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantFlow Fund | Systematic Proprietary Trading</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#060d1a;
+  --panel:#0c1628;
+  --border:#1a2e4a;
+  --cyan:#00d4c8;
+  --cyan-dim:rgba(0,212,200,0.12);
+  --cyan-glow:rgba(0,212,200,0.06);
+  --gold:#c8a96e;
+  --muted:#5a7a9a;
+  --text:#d4e4f0;
+  --bright:#f0f8ff;
+}
+body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;line-height:1.7}
 
-        .container { max-width: 1000px; margin: -3rem auto 4rem auto; padding: 0 1.5rem; }
-        
-        section { background: var(--white); padding: 3rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(13, 71, 161, 0.08); margin-bottom: 2.5rem; border: 1px solid rgba(0, 131, 143, 0.1); }
-        h2 { color: var(--deep-flow); font-size: 1.8rem; margin-top: 0; margin-bottom: 1.5rem; display: flex; align-items: center; }
-        h2::before { content: ""; width: 24px; height: 4px; background: var(--stream-cyan); margin-right: 15px; border-radius: 2px; }
+/* Grid background */
+body::before{
+  content:"";position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,212,200,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,200,0.03) 1px,transparent 1px);
+  background-size:40px 40px;
+  pointer-events:none;z-index:0;
+}
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-        
-        .card { padding: 1.5rem; border-radius: 8px; border: 1px solid var(--ice-blue); transition: transform 0.2s ease; }
-        .card:hover { transform: translateY(-5px); border-color: var(--stream-cyan); }
-        .card h3 { color: var(--stream-cyan); margin-top: 0; font-size: 1.2rem; }
+/* Ticker */
+.ticker-bar{
+  background:var(--cyan);
+  border-bottom:none;
+  padding:0.55rem 0;
+  overflow:hidden;
+  position:relative;
+  z-index:2;
+}
+.ticker-inner{
+  display:flex;gap:0;
+  animation:ticker 40s linear infinite;
+  width:max-content;
+}
+.ticker-item{
+  font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:600;
+  color:var(--navy);white-space:nowrap;padding:0 1.5rem;
+  letter-spacing:2px;text-transform:uppercase;
+}
+.ticker-item.sep{padding:0;color:rgba(6,13,26,0.35);font-size:0.6rem}
+.ticker-item.up{color:var(--navy)}
+.ticker-item.accent{color:var(--navy);opacity:0.5}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-        .philosophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; }
-        .philosophy-item i { font-size: 2rem; display: block; margin-bottom: 1rem; }
-        .philosophy-item h4 { color: var(--deep-flow); margin-bottom: 0.5rem; }
+/* Header */
+header{
+  position:relative;z-index:1;
+  padding:5rem 2rem 4rem;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+}
 
-        .cta-box { background: linear-gradient(135deg, var(--deep-flow) 0%, #1a237e 100%); color: var(--white); text-align: center; padding: 4rem 2rem; border-radius: 12px; }
-        .cta-box h2 { color: var(--white); justify-content: center; border: none; }
-        .cta-box h2::before { display: none; }
-        
-        .btn { display: inline-block; background: var(--stream-cyan); color: var(--white); padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 2rem; transition: background 0.3s ease; border: 2px solid transparent; }
-        .btn:hover { background: transparent; border-color: var(--white); }
+.logo-mark{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:72px;height:72px;border-radius:6px;
+  border:1px solid var(--cyan);
+  font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:1.4rem;
+  color:var(--cyan);margin-bottom:2rem;
+  position:relative;
+}
+.logo-mark::before{
+  content:"";position:absolute;inset:-4px;border-radius:8px;
+  border:1px solid rgba(0,212,200,0.2);
+}
 
-        footer { text-align: center; padding: 4rem 2rem; color: var(--deep-flow); font-weight: 500; }
-        
-        .highlight { color: var(--stream-cyan); font-weight: bold; }
-    </style>
+h1{
+  font-family:'DM Serif Display',serif;font-size:clamp(2.5rem,6vw,4.5rem);
+  font-weight:400;color:var(--bright);letter-spacing:-1px;line-height:1.1;
+  margin-bottom:0.5rem;
+}
+h1 em{font-style:italic;color:var(--cyan)}
+.sub{
+  font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--muted);
+  letter-spacing:3px;text-transform:uppercase;margin-bottom:2rem;
+}
+.badge-row{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.badge{
+  font-family:'IBM Plex Mono',monospace;font-size:0.68rem;
+  padding:4px 12px;border:1px solid var(--border);border-radius:2px;
+  color:var(--muted);background:var(--panel);
+}
+.badge.active{border-color:var(--cyan);color:var(--cyan)}
+
+/* Main layout */
+main{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:3rem 2rem}
+section{margin-bottom:4rem}
+
+.section-label{
+  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+  color:var(--cyan);letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:1.2rem;display:flex;align-items:center;gap:0.75rem;
+}
+.section-label::after{content:"";flex:1;height:1px;background:var(--border)}
+
+h2{
+  font-family:'DM Serif Display',serif;font-weight:400;font-size:2rem;
+  color:var(--bright);line-height:1.2;margin-bottom:1rem;
+}
+
+p{color:var(--text);font-size:0.95rem;line-height:1.8;max-width:700px}
+
+/* Stat row */
+.stat-row{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:4px;
+  overflow:hidden;margin:2rem 0;
+}
+.stat{
+  background:var(--panel);padding:1.5rem 1.25rem;text-align:center;
+}
+.stat-val{
+  font-family:'IBM Plex Mono',monospace;font-size:1.6rem;font-weight:600;
+  color:var(--cyan);display:block;line-height:1;margin-bottom:0.4rem;
+}
+.stat-lbl{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
+
+/* Bar chart */
+.chart-bar-row{display:flex;flex-direction:column;gap:10px;margin-top:1.5rem}
+.bar-item{display:flex;align-items:center;gap:12px}
+.bar-label{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--muted);width:90px;flex-shrink:0;text-align:right}
+.bar-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;background:var(--cyan)}
+.bar-val{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--cyan);width:40px}
+
+/* Pod grid */
+.pod-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+  margin-top:1.75rem;
+}
+.pod{
+  background:var(--panel);padding:1.75rem;
+  transition:background 0.2s;
+  position:relative;
+}
+.pod:hover{background:#0f1e33}
+.pod-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
+  color:var(--cyan);letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:0.75rem;
+}
+.pod h3{
+  font-family:'DM Serif Display',serif;font-weight:400;font-size:1.25rem;
+  color:var(--bright);margin-bottom:0.6rem;
+}
+.pod p{font-size:0.85rem;color:var(--muted);line-height:1.65;max-width:none}
+.pod-num{
+  position:absolute;top:1.25rem;right:1.25rem;
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
+  color:var(--border);
+}
+
+/* Markets */
+.market-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:1.5rem}
+.market{
+  border:1px solid var(--border);border-radius:3px;padding:1.25rem;
+  background:var(--panel);display:flex;flex-direction:column;gap:0.4rem;
+  transition:border-color 0.2s;
+}
+.market:hover{border-color:var(--cyan)}
+.market-name{
+  font-family:'IBM Plex Mono',monospace;font-size:0.8rem;font-weight:600;
+  color:var(--gold);
+}
+.market-sub{font-size:0.78rem;color:var(--muted)}
+
+/* Values */
+.values-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+  margin-top:1.5rem;
+}
+@media(max-width:540px){.values-grid{grid-template-columns:1fr}}
+.value{padding:2rem 1.75rem;background:var(--panel)}
+.value-icon{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--cyan);margin-bottom:0.75rem;letter-spacing:1.5px}
+.value h3{font-family:'DM Serif Display',serif;font-weight:400;font-size:1.2rem;color:var(--bright);margin-bottom:0.6rem}
+.value p{font-size:0.84rem;color:var(--muted);line-height:1.7;max-width:none}
+
+/* Requirements */
+.req-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+@media(max-width:540px){.req-grid{grid-template-columns:1fr}}
+.req{border-left:2px solid var(--cyan);padding:0.9rem 1rem;background:var(--cyan-glow)}
+.req h4{font-size:0.82rem;font-weight:500;color:var(--bright);margin-bottom:0.2rem}
+.req p{font-size:0.78rem;color:var(--muted);line-height:1.5;max-width:none}
+
+/* CTA */
+.cta{
+  border:1px solid var(--border);border-radius:4px;
+  padding:3rem 2.5rem;text-align:center;background:var(--panel);
+  position:relative;overflow:hidden;
+}
+.cta::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,212,200,0.07),transparent 70%);
+  pointer-events:none;
+}
+.cta h2{margin-bottom:0.75rem}
+.cta p{margin:0 auto 2rem;color:var(--muted)}
+.btn{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;font-size:0.8rem;letter-spacing:2px;
+  padding:14px 36px;border:1px solid var(--cyan);color:var(--cyan);
+  text-decoration:none;border-radius:2px;
+  transition:background 0.2s,color 0.2s;
+  text-transform:uppercase;
+}
+.btn:hover{background:var(--cyan);color:var(--navy)}
+
+/* Footer */
+footer{
+  position:relative;z-index:1;border-top:1px solid var(--border);
+  padding:2rem;text-align:center;
+  font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--muted);
+}
+</style>
 </head>
 <body>
 
-<header>
-    <h1>QUANTFLOW FUND</h1>
-    <p class="tagline">Scientific Excellence. Collaborative Growth.</p>
-</header>
-
-<div class="container">
-    <section>
-        <h2>The Founding Vision</h2>
-        <p>QuantFlow Fund is a <span class="highlight">Proprietary Student-Led Initiative</span> where research meets execution. We are not just a fund; we are a collective of founding associates dedicated to mastering the complexities of financial markets through mathematics and computer science.</p>
-        <p>Our model is built on <span class="highlight">Ownership</span>. Every member is an associate, contributing to a shared infrastructure where intellectual curiosity and scientific passion are the primary drivers of our success.</p>
-    </section>
-
-    <section>
-        <h2>Our Core Values</h2>
-        <div class="philosophy-grid">
-            <div class="philosophy-item">
-                <h4>Intellectual Humility</h4>
-                <p>Recognizing that the market is a complex teacher. We embrace failure as a necessary step toward robust Alpha.</p>
-            </div>
-            <div class="philosophy-item">
-                <h4>Benevolence</h4>
-                <p>Support and mentorship are at our heart. We grow together, ensuring that knowledge is shared across every pod.</p>
-            </div>
-            <div class="philosophy-item">
-                <h4>Scientific Passion</h4>
-                <p>We are driven by the beauty of stochastic processes, machine learning, and elegant engineering solutions.</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h2>Associate Collaboration Model</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Collective Intelligence</h3>
-                <p>No silos. Data engineers, quant researchers, and traders collaborate daily to build a unified systematic ecosystem.</p>
-            </div>
-            <div class="card">
-                <h3>Proprietary Growth</h3>
-                <p>As an associate, you don't just execute tasks—you own your research. Your contributions shape the fund's DNA.</p>
-            </div>
-            <div class="card">
-                <h3>Continuous Learning</h3>
-                <p>We bridge the gap between academic theory and real-world high-velocity trading through internal workshops and peer-review.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-box">
-        <h2>Become a Founding Associate</h2>
-        <p>We are seeking ultra-motivated students who value integrity, teamwork, and scientific rigor.<br>Are you ready to co-found the future of systematic trading?</p>
-        <a href="mailto:quantflowcapital@proton.me" class="btn">Apply to Join the Flow</a>
-    </section>
+<!-- Banner -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <span class="ticker-item">JOIN THE FLOW</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item accent">QUANTFLOW FUND</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item">SYSTEMATIC ALPHA</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item up">CROSS-ASSET +37%</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item">PRECISION IN RESEARCH</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item up">QUANT RESEARCH ▲</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item">RESILIENCE IN EXECUTION</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item accent">FOUNDING ASSOCIATES · SPRING 2026</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item">5 DIVISIONS · 6 ASSET CLASSES</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item up">DECORRELATION +∞</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item">MATHEMATICAL EDGE</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item accent">APPLY NOW</span>
+    <span class="ticker-item sep">✦</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item">JOIN THE FLOW</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item accent">QUANTFLOW FUND</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item">SYSTEMATIC ALPHA</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item up">CROSS-ASSET +37%</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item">PRECISION IN RESEARCH</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item up">QUANT RESEARCH ▲</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item">RESILIENCE IN EXECUTION</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item accent">FOUNDING ASSOCIATES · SPRING 2026</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item">5 DIVISIONS · 6 ASSET CLASSES</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item up">DECORRELATION +∞</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item">MATHEMATICAL EDGE</span>
+    <span class="ticker-item sep">✦</span>
+    <span class="ticker-item accent">APPLY NOW</span>
+    <span class="ticker-item sep">✦</span>
+  </div>
 </div>
 
+<!-- Header -->
+<header>
+  <div class="logo-mark">QF</div>
+  <div class="sub">Systematic Proprietary Intelligence</div>
+  <h1>Quant<em>Flow</em> Fund</h1>
+  <p style="color:var(--muted);font-size:0.9rem;margin-top:1rem;max-width:500px;margin-left:auto;margin-right:auto">
+    A student-led proprietary trading collective where mathematical evidence supersedes intuition.
+  </p>
+  <div class="badge-row">
+    <span class="badge active">Open · Spring 2026</span>
+    <span class="badge">FOREX</span>
+    <span class="badge">INDICES</span>
+    <span class="badge">METALS</span>
+    <span class="badge">COMMODITIES</span>
+    <span class="badge">EQUITY</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- Stats -->
+  <div class="stat-row">
+    <div class="stat">
+      <span class="stat-val">6</span>
+      <span class="stat-lbl">Asset Classes</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">5</span>
+      <span class="stat-lbl">Divisions</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">24/7</span>
+      <span class="stat-lbl">Market Coverage</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">≤2</span>
+      <span class="stat-lbl">Roles / Applicant</span>
+    </div>
+  </div>
+
+  <!-- 01 Philosophy -->
+  <section>
+    <div class="section-label">01 / Philosophy</div>
+    <h2>The Quantitative Edge</h2>
+    <p>QuantFlow Fund was built on a single conviction: modern markets contain patterns invisible to the human eye but perfectly decodable through mathematics. We neutralize emotional bias entirely — every trade is the result of validated statistical significance, executed by algorithmic triggers on systematic regimes identified in real time.</p>
+    <div class="chart-bar-row">
+      <div class="bar-item">
+        <span class="bar-label">Data-Driven</span>
+        <div class="bar-track"><div class="bar-fill" style="width:96%"></div></div>
+        <span class="bar-val">100%</span>
+      </div>
+      <div class="bar-item">
+        <span class="bar-label">Systematic</span>
+        <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+        <span class="bar-val">100%</span>
+      </div>
+      <div class="bar-item">
+        <span class="bar-label">Discretionary</span>
+        <div class="bar-track"><div class="bar-fill" style="width:0%;background:#e05050"></div></div>
+        <span class="bar-val" style="color:#e05050">0%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Markets -->
+  <section>
+    <div class="section-label">02 / Cross-Asset DNA</div>
+    <h2>Core Markets</h2>
+    <p>Decorrelation is structural, not incidental. Each pillar operates under its own quantitative logic, engineered for independence from the others.</p>
+    <div class="market-list">
+      <div class="market">
+        <span class="market-name">FOREX</span>
+        <span class="market-sub">G10 liquidity · Interest rate parity · Yield & momentum capture</span>
+      </div>
+      <div class="market">
+        <span class="market-name">INDICES</span>
+        <span class="market-sub">Global benchmarks · Systematic factors · Institutional flow</span>
+      </div>
+      <div class="market">
+        <span class="market-name">METALS</span>
+        <span class="market-sub">Systemic hedges · Precious volatility · Stress indicators</span>
+      </div>
+      <div class="market">
+        <span class="market-name">COMMODITIES</span>
+        <span class="market-sub">Structural risk premiums · Regulatory hedging · Energy flows</span>
+      </div>
+      <div class="market">
+        <span class="market-name">EQUITY</span>
+        <span class="market-sub">Systematic allocation · Automated portfolio rebalancing</span>
+      </div>
+      <div class="market">
+        <span class="market-name">MONEY MKT</span>
+        <span class="market-sub">Cash optimization · Treasury management · Capital agility</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Architecture -->
+  <section>
+    <div class="section-label">03 / Structure</div>
+    <h2>Agile Pod Architecture</h2>
+    <p>Unlike rigid institutional hierarchies, QuantFlow operates as a decentralized network. Each Pod owns its research pipeline and risk parameters — enabling rapid iteration without centralized bottlenecks.</p>
+    <div class="pod-grid">
+      <div class="pod">
+        <span class="pod-num">01</span>
+        <div class="pod-tag">Data Division</div>
+        <h3>The Engine</h3>
+        <p>Aggregates raw data and engineers insightful features. Architects high-frequency ETL pipelines and real-time anomaly detection — the foundation every Alpha depends on.</p>
+      </div>
+      <div class="pod">
+        <span class="pod-num">02</span>
+        <div class="pod-tag">Quant Research</div>
+        <h3>The Architect</h3>
+        <p>Develops proprietary signals and identifies market regimes. Applies ML, stochastic modeling, and creative problem-solving to extract non-correlated strategies from noise.</p>
+      </div>
+      <div class="pod">
+        <span class="pod-num">03</span>
+        <div class="pod-tag">Financial Engineering</div>
+        <h3>The Heartbeat</h3>
+        <p>Bridges models to markets. Maintains high-availability trading infrastructure, ensures zero-downtime 24/7 operation, and optimizes research-to-production latency.</p>
+      </div>
+      <div class="pod">
+        <span class="pod-num">04</span>
+        <div class="pod-tag">Risk Management</div>
+        <h3>The Authority</h3>
+        <p>The ultimate veto power. Enforces leverage constraints, audits all models for overfitting and bias, and governs automated crisis protocols with full shutdown authority.</p>
+      </div>
+      <div class="pod">
+        <span class="pod-num">05</span>
+        <div class="pod-tag">Trading Division</div>
+        <h3>The Executor</h3>
+        <p>Manages real-time execution and system monitoring. Optimizes fills, minimizes slippage, and maintains market connectivity across volatile regime shifts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Culture -->
+  <section>
+    <div class="section-label">04 / Culture</div>
+    <h2>What We Stand For</h2>
+    <div class="values-grid">
+      <div class="value">
+        <div class="value-icon">// RIGOR</div>
+        <h3>Academic Precision</h3>
+        <p>Our lab bridges stochastic theory and high-frequency reality. We value understanding the "Why" as much as the "Profit" — every model is peer-reviewed internally before touching capital.</p>
+      </div>
+      <div class="value">
+        <div class="value-icon">// CULTURE</div>
+        <h3>Scientific Benevolence</h3>
+        <p>Excellence is mandatory. But it is achieved through mutual support and intellectual humility — high-level mentorship is the standard, not the exception.</p>
+      </div>
+      <div class="value">
+        <div class="value-icon">// MINDSET</div>
+        <h3>Resilient Curiosity</h3>
+        <p>90% of research leads are abandoned before production. We celebrate the discipline to pivot without discouragement — systematic iteration is itself a competitive edge.</p>
+      </div>
+      <div class="value">
+        <div class="value-icon">// OWNERSHIP</div>
+        <h3>Founding Model</h3>
+        <p>Every associate is a co-owner of our shared infrastructure. You build something that endures — not a line on a résumé, but a stake in a systematic Alpha ecosystem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Recruitment -->
+  <section>
+    <div class="section-label">05 / Recruitment</div>
+    <h2>Application Requirements</h2>
+    <p>We select for intellectual rigor, curiosity, and technical depth. Academic background is a signal — demonstrated ability is the standard.</p>
+    <div class="req-grid">
+      <div class="req">
+        <h4>Academic Fields</h4>
+        <p>Financial Engineering · Quant Finance · Economics · Econometrics · Mathematics · Physics · Computer Science</p>
+      </div>
+      <div class="req">
+        <h4>Programming Stack</h4>
+        <p>Hands-on proficiency in at least one of: Python · C# · C++ · JavaScript</p>
+      </div>
+      <div class="req">
+        <h4>Enrollment</h4>
+        <p>Currently enrolled student or recent graduate. Bachelor's minimum. Motivation and curiosity weighted heavily.</p>
+      </div>
+      <div class="req">
+        <h4>Process</h4>
+        <p>Apply for up to two roles. We reserve the right to propose an alternative placement based on your profile fit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="section-label" style="justify-content:center;margin-bottom:1.5rem">Join the Flow</div>
+    <h2>Become a Founding Associate</h2>
+    <p>Build the future of systematic trading. Precision in Research. Resilience in Execution.</p>
+    <a href="mailto:contact@quantflowfund.com" class="btn">Apply to the Partnership →</a>
+  </div>
+
+</main>
+
 <footer>
-    &copy; 2026 QuantFlow Fund | Built with Passion by Student Associates
+  © 2026 QUANTFLOW FUND &nbsp;·&nbsp; Student-Led Proprietary Initiative &nbsp;·&nbsp; Strictly Confidential
 </footer>
 
 </body>
