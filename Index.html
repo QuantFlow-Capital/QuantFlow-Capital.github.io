@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuantFlow Fund | Systematic Trading</title>
+    <title>QuantFlow Fund | Student-Led Proprietary Quantitative Fund</title>
     <style>
         :root {
             --deep-flow: #0D47A1;
@@ -11,53 +11,103 @@
             --sky-blue: #E3F2FD;
             --primary-text: #1565C0;
             --ice-blue: #BBDEFB;
+            --white: #ffffff;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--sky-blue); color: var(--primary-text); margin: 0; line-height: 1.6; }
-        header { background: white; padding: 2rem; text-align: center; border-bottom: 3px solid var(--stream-cyan); }
-        h1 { color: var(--deep-flow); margin: 0; font-size: 2.5rem; letter-spacing: 2px; }
-        .tagline { color: var(--stream-cyan); font-weight: bold; font-size: 1.1rem; }
-        .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-        section { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
-        h2 { color: var(--deep-flow); border-left: 5px solid var(--stream-cyan); padding-left: 1rem; }
-        .pods { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
-        .pod-card { background: var(--ice-blue); padding: 1rem; border-radius: 5px; border: 1px solid var(--deep-flow); }
-        .cta-box { text-align: center; background: var(--deep-flow); color: white; padding: 2rem; border-radius: 8px; }
-        .btn { background: var(--stream-cyan); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: var(--deep-flow); }
+        
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--sky-blue); color: var(--primary-text); margin: 0; line-height: 1.7; }
+        
+        header { background: var(--white); padding: 4rem 2rem; text-align: center; border-bottom: 4px solid var(--stream-cyan); }
+        h1 { color: var(--deep-flow); margin: 0; font-size: 3rem; letter-spacing: -1px; font-weight: 800; }
+        .tagline { color: var(--stream-cyan); font-weight: 600; font-size: 1.2rem; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .container { max-width: 1000px; margin: -3rem auto 4rem auto; padding: 0 1.5rem; }
+        
+        section { background: var(--white); padding: 3rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(13, 71, 161, 0.08); margin-bottom: 2.5rem; border: 1px solid rgba(0, 131, 143, 0.1); }
+        h2 { color: var(--deep-flow); font-size: 1.8rem; margin-top: 0; margin-bottom: 1.5rem; display: flex; align-items: center; }
+        h2::before { content: ""; width: 24px; height: 4px; background: var(--stream-cyan); margin-right: 15px; border-radius: 2px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        
+        .card { padding: 1.5rem; border-radius: 8px; border: 1px solid var(--ice-blue); transition: transform 0.2s ease; }
+        .card:hover { transform: translateY(-5px); border-color: var(--stream-cyan); }
+        .card h3 { color: var(--stream-cyan); margin-top: 0; font-size: 1.2rem; }
+
+        .philosophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; }
+        .philosophy-item i { font-size: 2rem; display: block; margin-bottom: 1rem; }
+        .philosophy-item h4 { color: var(--deep-flow); margin-bottom: 0.5rem; }
+
+        .cta-box { background: linear-gradient(135deg, var(--deep-flow) 0%, #1a237e 100%); color: var(--white); text-align: center; padding: 4rem 2rem; border-radius: 12px; }
+        .cta-box h2 { color: var(--white); justify-content: center; border: none; }
+        .cta-box h2::before { display: none; }
+        
+        .btn { display: inline-block; background: var(--stream-cyan); color: var(--white); padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 2rem; transition: background 0.3s ease; border: 2px solid transparent; }
+        .btn:hover { background: transparent; border-color: var(--white); }
+
+        footer { text-align: center; padding: 4rem 2rem; color: var(--deep-flow); font-weight: 500; }
+        
+        .highlight { color: var(--stream-cyan); font-weight: bold; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>QUANTFLOW FUND</h1>
-    <p class="tagline">Precision in Research. Resilience in Execution.</p>
+    <p class="tagline">Scientific Excellence. Collaborative Growth.</p>
 </header>
 
 <div class="container">
     <section>
-        <h2>The Alpha Engine</h2>
-        <p>QuantFlow Fund is a student-led systematic hedge fund. We bridge the gap between quantitative research and high-velocity execution, replacing intuition with mathematical rigor and ML-driven regime detection.</p>
+        <h2>The Founding Vision</h2>
+        <p>QuantFlow Fund is a <span class="highlight">Proprietary Student-Led Initiative</span> where research meets execution. We are not just a fund; we are a collective of founding associates dedicated to mastering the complexities of financial markets through mathematics and computer science.</p>
+        <p>Our model is built on <span class="highlight">Ownership</span>. Every member is an associate, contributing to a shared infrastructure where intellectual curiosity and scientific passion are the primary drivers of our success.</p>
     </section>
 
     <section>
-        <h2>Cross-Asset Pod Architecture</h2>
-        <div class="pods">
-            <div class="pod-card"><strong>Forex & Money Market</strong><br>Interest rate differentials & liquidity optimization.</div>
-            <div class="pod-card"><strong>Indices & Equity</strong><br>Factor investing & systematic rebalancing.</div>
-            <div class="pod-card"><strong>Commodities & Metals</strong><br>Structural risk premiums & systemic hedges.</div>
+        <h2>Our Core Values</h2>
+        <div class="philosophy-grid">
+            <div class="philosophy-item">
+                <h4>Intellectual Humility</h4>
+                <p>Recognizing that the market is a complex teacher. We embrace failure as a necessary step toward robust Alpha.</p>
+            </div>
+            <div class="philosophy-item">
+                <h4>Benevolence</h4>
+                <p>Support and mentorship are at our heart. We grow together, ensuring that knowledge is shared across every pod.</p>
+            </div>
+            <div class="philosophy-item">
+                <h4>Scientific Passion</h4>
+                <p>We are driven by the beauty of stochastic processes, machine learning, and elegant engineering solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Associate Collaboration Model</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Collective Intelligence</h3>
+                <p>No silos. Data engineers, quant researchers, and traders collaborate daily to build a unified systematic ecosystem.</p>
+            </div>
+            <div class="card">
+                <h3>Proprietary Growth</h3>
+                <p>As an associate, you don't just execute tasks—you own your research. Your contributions shape the fund's DNA.</p>
+            </div>
+            <div class="card">
+                <h3>Continuous Learning</h3>
+                <p>We bridge the gap between academic theory and real-world high-velocity trading through internal workshops and peer-review.</p>
+            </div>
         </div>
     </section>
 
     <section class="cta-box">
-        <h3>Join the Flow as a Founding Associate</h3>
-        <p>We are seeking high-potential students (Bachelor min.) in Math, CS, and Financial Engineering.</p>
-        <br>
-        <a href="mailto:quantflowcapital@proton.me" class="btn">Apply Now</a>
+        <h2>Become a Founding Associate</h2>
+        <p>We are seeking ultra-motivated students who value integrity, teamwork, and scientific rigor.<br>Are you ready to co-found the future of systematic trading?</p>
+        <a href="mailto:quantflowcapital@proton.me" class="btn">Apply to Join the Flow</a>
     </section>
 </div>
 
 <footer>
-    &copy; 2026 QuantFlow Fund | Student-Led Systematic Initiative
+    &copy; 2026 QuantFlow Fund | Built with Passion by Student Associates
 </footer>
 
 </body>
